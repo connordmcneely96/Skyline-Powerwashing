@@ -16,7 +16,7 @@ pages_build_output_dir = ".vercel/output/static"
 [[d1_databases]]
 binding = "DB"
 database_name = "skyline-leads"
-database_id = "REPLACE_WITH_D1_DATABASE_ID"
+database_id = "422fc8fe-e8aa-40b3-8ce9-7cb8d43dcfcf"
 
 # Optional KV namespace for IP rate limiting (the API skips limiting if absent).
 # Create:  wrangler kv namespace create RATE_LIMIT
