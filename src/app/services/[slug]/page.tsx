@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { PageShell } from "@/components/site/page-shell";
-import { services } from "@/lib/site-config";
+import { allServices } from "@/lib/site-config";
 
 interface Params {
   params: { slug: string };
@@ -13,11 +13,11 @@ interface Params {
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return services.map((s) => ({ slug: s.slug }));
+  return allServices.map((s) => ({ slug: s.slug }));
 }
 
 export function generateMetadata({ params }: Params): Metadata {
-  const service = services.find((s) => s.slug === params.slug);
+  const service = allServices.find((s) => s.slug === params.slug);
   if (!service) return { title: "Service" };
   return {
     title: service.title,
@@ -26,7 +26,7 @@ export function generateMetadata({ params }: Params): Metadata {
 }
 
 export default function ServicePage({ params }: Params) {
-  const service = services.find((s) => s.slug === params.slug);
+  const service = allServices.find((s) => s.slug === params.slug);
   if (!service) notFound();
 
   return (
