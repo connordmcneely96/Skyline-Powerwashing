@@ -3,12 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { Phone, MapPin } from "lucide-react";
+import { MapPin, ArrowRight } from "lucide-react";
 
-import { brand, services } from "@/lib/site-config";
+import { brand } from "@/lib/site-config";
 import { Button } from "@/components/ui/button";
-
-const servicesLine = services.map((s) => s.title).join(" • ");
 
 export function Hero() {
   const reduceMotion = useReducedMotion();
@@ -33,7 +31,7 @@ export function Hero() {
       {/* Background photo */}
       <Image
         src="/images/hero.png"
-        alt="Professional technician pressure washing a commercial building"
+        alt="Drone cleaning the upper facade of a multi-story commercial building"
         fill
         priority
         sizes="100vw"
@@ -60,7 +58,7 @@ export function Hero() {
             variants={item}
             className="font-display text-sm font-semibold uppercase tracking-[0.2em] text-brand-bright"
           >
-            {brand.serving}
+            Commercial &amp; Residential · {brand.serving}
           </motion.p>
 
           <motion.h1
@@ -68,7 +66,7 @@ export function Hero() {
             className="mt-4 font-display font-bold uppercase leading-[1.02] text-white"
             style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)" }}
           >
-            Professional
+            Drone-Powered
             <br />
             Exterior Cleaning
           </motion.h1>
@@ -77,14 +75,26 @@ export function Hero() {
             variants={item}
             className="mt-3 font-display text-xl font-semibold uppercase tracking-wide text-brand-bright sm:text-2xl"
           >
-            For Homes &amp; Businesses
+            For Commercial &amp; Multi-Story Properties
           </motion.p>
 
           <motion.p
             variants={item}
             className="mt-5 max-w-xl text-base leading-relaxed text-white/90"
           >
-            {servicesLine}
+            Clean your entire building — facades, roofs, high windows, and solar
+            — up to ~150&nbsp;ft with{" "}
+            <span className="font-semibold text-white">no scaffolding</span>,{" "}
+            <span className="font-semibold text-white">no lift rental</span>, and{" "}
+            <span className="font-semibold text-white">nobody working at height</span>.
+            Plus a traditional ground crew for homes, driveways, and flatwork.
+          </motion.p>
+
+          <motion.p
+            variants={item}
+            className="mt-3 text-sm font-medium text-white/70"
+          >
+            {brand.pilotLine}
           </motion.p>
 
           <motion.div
@@ -92,13 +102,13 @@ export function Hero() {
             className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center"
           >
             <Button asChild size="lg">
-              <Link href="/quote-request">Get Free Quote</Link>
+              <Link href="/quote-request">Get a Free Quote</Link>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <a href={brand.phoneHref}>
-                <Phone aria-hidden="true" />
-                Call Now
-              </a>
+              <Link href="/commercial">
+                Commercial Services
+                <ArrowRight aria-hidden="true" />
+              </Link>
             </Button>
           </motion.div>
 

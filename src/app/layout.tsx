@@ -4,7 +4,7 @@ import "./globals.css";
 
 import { Header } from "@/components/site/header";
 import { Footer } from "@/components/site/footer";
-import { brand, serviceAreas, services } from "@/lib/site-config";
+import { brand, serviceAreas, allServices } from "@/lib/site-config";
 
 const oswald = Oswald({
   subsets: ["latin"],
@@ -25,25 +25,27 @@ const siteUrl = "https://skylineexteriorcleaning.com";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${brand.name} | Pressure & Soft Washing in Arkansas & Oklahoma`,
+    default: `${brand.name} | Drone-Powered Exterior Cleaning in Arkansas & Oklahoma`,
     template: `%s | ${brand.name}`,
   },
   description:
-    "Professional exterior cleaning for homes and businesses — pressure washing, soft washing, roof, window, and gutter cleaning. Serving Arkansas & Oklahoma. Licensed, insured, free estimates.",
+    "Drone-powered exterior cleaning for commercial and multi-story properties — building facades, roofs, high windows, and solar up to ~150 ft with no scaffolding or lifts. Plus a ground crew for homes and flatwork. Serving Arkansas & Oklahoma. Free estimates.",
   keywords: [
+    "drone exterior cleaning",
+    "drone power washing",
+    "commercial building washing",
+    "drone roof cleaning",
+    "high-rise window cleaning",
+    "solar panel cleaning",
     "pressure washing",
     "soft washing",
-    "roof cleaning",
-    "window cleaning",
-    "gutter cleaning",
-    "exterior cleaning",
     "Little Rock",
     "Oklahoma City",
   ],
   openGraph: {
-    title: `${brand.name} | Professional Exterior Cleaning`,
+    title: `${brand.name} | Drone-Powered Exterior Cleaning`,
     description:
-      "Pressure washing, soft washing, roof, window & gutter cleaning for homes and businesses across Arkansas & Oklahoma.",
+      "Clean entire buildings from the air — facades, roofs, high windows & solar — no scaffolding or lifts. Commercial & residential across Arkansas & Oklahoma.",
     url: siteUrl,
     siteName: brand.name,
     locale: "en_US",
@@ -59,9 +61,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${brand.name} | Professional Exterior Cleaning`,
+    title: `${brand.name} | Drone-Powered Exterior Cleaning`,
     description:
-      "Pressure washing, soft washing, roof, window & gutter cleaning across Arkansas & Oklahoma.",
+      "Clean entire buildings from the air — no scaffolding or lifts. Commercial & residential across Arkansas & Oklahoma.",
     images: ["/images/og.png"],
   },
   alternates: { canonical: "/" },
@@ -92,7 +94,7 @@ const jsonLd = {
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Exterior Cleaning Services",
-    itemListElement: services.map((s) => ({
+    itemListElement: allServices.map((s) => ({
       "@type": "Offer",
       itemOffered: { "@type": "Service", name: s.title, description: s.desc },
     })),
