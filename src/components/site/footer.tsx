@@ -19,8 +19,8 @@ export function Footer() {
           <div>
             <Logo tone="light" />
             <p className="mt-4 max-w-xs text-sm text-white/65">
-              {brand.serving}. Professional pressure washing, soft washing, and
-              exterior cleaning for homes and businesses.
+              {brand.serving}. Drone-powered cleaning for commercial and
+              multi-story properties, plus a ground crew for homes and flatwork.
             </p>
             <div className="mt-5 flex items-center gap-3">
               <a
@@ -121,9 +121,11 @@ export function Footer() {
             <p className="mt-4 text-xs italic text-white/55">
               {serviceAreas.note}
             </p>
+            {/* HONESTY: verifiable claim only. TODO(owner): add an insurance
+                tag here once commercial liability coverage is in place. */}
             <p className="mt-5 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium text-white">
               <ShieldCheck className="h-4 w-4 text-brand-bright" aria-hidden="true" />
-              Licensed &amp; Insured
+              FAA Part 107 Certified Pilot
             </p>
           </div>
         </div>

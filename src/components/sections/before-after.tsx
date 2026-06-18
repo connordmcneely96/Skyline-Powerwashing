@@ -46,8 +46,10 @@ export function BeforeAfter() {
           <SectionHeading
             tone="dark"
             align="left"
+            eyebrow="Drag to Compare"
             title="See the Difference"
             highlight="Professional Cleaning Makes"
+            subtitle="These are sample comparisons to show how the slider works. Real Skyline project photos are coming soon."
             className="sm:mx-0"
           />
           {/* Arrow controls */}

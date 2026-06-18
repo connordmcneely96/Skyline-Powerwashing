@@ -1,14 +1,19 @@
 import {
+  PlaneTakeoff,
+  Building2,
+  Sparkles,
+  PanelTop,
+  SunMedium,
   SprayCan,
   Droplets,
   CloudRain,
   House,
-  Building2,
   ShieldCheck,
   Star,
-  PlaneTakeoff,
-  Sparkles,
-  PanelTop,
+  HardHat,
+  Construction,
+  Clock,
+  Banknote,
   type LucideIcon,
 } from "lucide-react";
 
@@ -16,17 +21,22 @@ import type { IconKey } from "@/lib/site-config";
 
 /** Maps config icon keys to lucide components so config stays string-only. */
 export const iconMap: Record<IconKey, LucideIcon> = {
-  "pressure-washing": SprayCan,
-  "soft-washing": Droplets,
-  "roof-cleaning": Sparkles,
-  "window-cleaning": PanelTop,
-  "gutter-cleaning": CloudRain,
   drone: PlaneTakeoff,
   building: Building2,
+  "roof-cleaning": Sparkles,
+  "window-cleaning": PanelTop,
+  solar: SunMedium,
+  "pressure-washing": SprayCan,
+  "soft-washing": Droplets,
+  "gutter-cleaning": CloudRain,
   home: House,
   droplets: Droplets,
   shield: ShieldCheck,
   star: Star,
+  "no-lift": Construction,
+  cost: Banknote,
+  clock: Clock,
+  safety: HardHat,
 };
 
 /** Facebook brand glyph (lucide removed brand icons in v1). */

@@ -3,3 +3,25 @@ compatibility_date = "2024-09-23"
 # Required by @cloudflare/next-on-pages so the Next.js runtime works on Pages.
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = ".vercel/output/static"
+
+# D1 — leads database for the /api/quote handler.
+#
+# 1) Create it once:           wrangler d1 create skyline-leads
+#    Copy the printed database_id into `database_id` below.
+# 2) Apply the migration:      wrangler d1 execute skyline-leads --remote --file=./migrations/0001_leads.sql
+# 3) PRODUCTION: add the SAME binding in the Pages dashboard
+#    (Settings → Functions → D1 database bindings): Variable name "DB" → skyline-leads.
+#    The binding in this file applies to `wrangler` CLI / local dev; the
+#    dashboard binding is what production Pages Functions actually use.
+[[d1_databases]]
+binding = "DB"
+database_name = "skyline-leads"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+# Optional KV namespace for IP rate limiting (the API skips limiting if absent).
+# Create:  wrangler kv namespace create RATE_LIMIT
+# Then uncomment and paste the id, and add the same "RATE_LIMIT" binding in the
+# Pages dashboard (Settings → Functions → KV namespace bindings).
+# [[kv_namespaces]]
+# binding = "RATE_LIMIT"
+# id = "REPLACE_WITH_KV_NAMESPACE_ID"

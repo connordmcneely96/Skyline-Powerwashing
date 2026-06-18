@@ -9,6 +9,35 @@ homepage. Anything brand-specific lives in `src/lib/site-config.ts` (text) and
   reference mockup. To rebrand, edit `src/lib/site-config.ts` and the color
   tokens in `globals.css`.
 
+## Positioning pass (drone-forward) + quote backend
+- **Drone leads, ground supports.** The homepage and `/commercial` headline
+  drone-powered cleaning of commercial / multi-story buildings (no scaffolding,
+  no lifts, nobody at height, up to ~150 ft). Ground services (pressure/soft/
+  window/gutter) are kept as the supporting "hybrid" base. Content lives in
+  `site-config.ts` as `droneServices` / `groundServices` / `allServices`.
+- **Honesty constraints (important).** No invented stats, testimonials, review
+  counts, or project numbers. The before/after section is framed as "sample
+  comparisons — real photos coming soon"; `/reviews` is an honest placeholder.
+  Verifiable claims only (FAA Part 107 certified pilot). The "Licensed & Insured"
+  claim was **softened/removed**; `TODO(owner)` comments mark where to add an
+  insurance claim once coverage is bound (trust badges, footer tag, JSON-LD).
+  Phone/email remain clearly-flagged placeholders (the `(555)` number is
+  intentionally non-working). `copyrightYear` is 2026.
+- **Quote form** (`/quote-request`): asks home vs business first, then branches
+  fields; captures UTM + referrer silently; honeypot + accessible validation;
+  POSTs to `/api/quote`. `/commercial` links with `?type=commercial` to pre-set
+  the branch (read from `window.location` on mount — avoids a Suspense boundary
+  and stays static-export friendly).
+- **Backend** (`/api/quote`, `runtime = 'edge'`): zod validation → honeypot →
+  optional KV rate limit (fails open) → D1 insert → Resend emails (owner routed
+  by type with `[COMMERCIAL]`/`[Residential]` subject; customer auto-reply).
+  Verified end-to-end against a local D1 via `wrangler pages dev`: valid leads
+  store with parsed numerics + attribution + `status='new'`, honeypot rows are
+  dropped, invalid/branch-incomplete payloads return 400. Email needs a real
+  `RESEND_API_KEY` (skipped gracefully when absent). Setup steps in `DEPLOY.md`.
+- **Form primitives** are lightweight native input/label/select/textarea styled
+  to match shadcn (native `<select>` avoids another Radix dependency on edge).
+
 ## Stack notes
 - **Next.js 14.2** (App Router, TS, Tailwind, `src/`). The spec pinned Next 14,
   so `@cloudflare/next-on-pages` is pinned to **1.13.12** — the last line that

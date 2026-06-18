@@ -1,0 +1,14 @@
+# Copy to ".dev.vars" for local development with `wrangler pages dev`.
+# ".dev.vars" is gitignored — never commit real secrets.
+# In production, set these in the Pages dashboard (Settings → Environment
+# variables / Secrets), NOT in this file.
+
+# Resend API key (secret) — https://resend.com/api-keys
+RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxxxxx
+
+# Verified sender on your Resend-verified domain.
+RESEND_FROM=Skyline <quotes@yourdomain.com>
+
+# Where leads are emailed. May be the same address to start.
+RESIDENTIAL_INBOX=leads@yourdomain.com
+COMMERCIAL_INBOX=commercial@yourdomain.com
