@@ -1,0 +1,5 @@
+name = "skyline-exterior-cleaning"
+compatibility_date = "2024-09-23"
+# Required by @cloudflare/next-on-pages so the Next.js runtime works on Pages.
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = ".vercel/output/static"
