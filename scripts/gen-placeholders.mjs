@@ -84,11 +84,14 @@ write("hero.png", 1920, 1080, INK);
 write("skyline.png", 1200, 900, INK2);
 write("og.png", 1200, 630, INK);
 
-// Service cards
+// Service cards (drone-led + ground-supported)
 for (const slug of [
+  "commercial-building-wash",
+  "drone-roof-cleaning",
+  "high-rise-window-cleaning",
+  "solar-panel-cleaning",
   "pressure-washing",
   "soft-washing",
-  "roof-cleaning",
   "window-cleaning",
   "gutter-cleaning",
 ]) {
