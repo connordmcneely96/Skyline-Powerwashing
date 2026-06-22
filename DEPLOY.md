@@ -85,7 +85,15 @@ with output directory `.vercel/output/static`.
 
 ## Honesty / launch checklist (owner)
 
-- [ ] Replace the `(555)` phone + placeholder email/domain in `src/lib/site-config.ts`.
-- [ ] Add an insurance claim **only once coverage is in place** (trust badges in
-      `site-config.ts`, the footer tag, and the JSON-LD in `layout.tsx`).
-- [ ] Swap placeholder images in `public/images/` for real photos.
+- [x] Real phone `(405) 479-5794` + `quotes@skylineexteriorcleaning.com` are
+      live in `src/lib/site-config.ts`.
+- [ ] Add an insurance claim **only once coverage is in place** — see the
+      `TODO(owner)` markers in `site-config.ts` (trust badges), the footer tag,
+      and `about/page.tsx`. The verifiable signal today is "FAA Part 107
+      Certified Pilot."
+- [ ] Confirm the optional "also runs a local exterior-maintenance operation"
+      line on the About page (`TODO(owner)`), or leave it out.
+- [ ] Swap placeholder images in `public/images/` for real photos — especially
+      real before/after and aerial drone shots.
+- [ ] Replace the Reviews placeholder with real, attributable reviews as they
+      come in (`TODO(owner)` in `reviews/page.tsx`).
