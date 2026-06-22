@@ -7,8 +7,8 @@
 RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxxxxx
 
 # Verified sender on your Resend-verified domain.
-RESEND_FROM=Skyline <quotes@yourdomain.com>
+RESEND_FROM=Skyline <quotes@skylineexteriorcleaning.com>
 
-# Where leads are emailed. May be the same address to start.
-RESIDENTIAL_INBOX=leads@yourdomain.com
-COMMERCIAL_INBOX=commercial@yourdomain.com
+# Where leads are emailed (your real inboxes). May be the same address to start.
+RESIDENTIAL_INBOX=quotes@skylineexteriorcleaning.com
+COMMERCIAL_INBOX=quotes@skylineexteriorcleaning.com
