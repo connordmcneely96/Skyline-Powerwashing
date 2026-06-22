@@ -29,7 +29,7 @@ export default function CommercialPage() {
       {/* Hero band */}
       <section className="relative overflow-hidden bg-ink pb-20 pt-36 text-white">
         <Image
-          src="/images/skyline.png"
+          src="/images/skyline.jpg"
           alt=""
           fill
           sizes="100vw"
