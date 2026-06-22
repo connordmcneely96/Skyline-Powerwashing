@@ -3,10 +3,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { MapPin, ArrowRight } from "lucide-react";
+import { MapPin, Phone, PlaneTakeoff } from "lucide-react";
 
 import { brand } from "@/lib/site-config";
 import { Button } from "@/components/ui/button";
+
+// Mockup services line (kept verbatim from the reference).
+const SERVICES_LINE =
+  "Pressure Washing • Soft Washing • Roof Cleaning • Window Cleaning • Gutter Cleaning";
 
 export function Hero() {
   const reduceMotion = useReducedMotion();
@@ -30,8 +34,8 @@ export function Hero() {
     <section className="relative flex min-h-[85vh] items-center overflow-hidden bg-ink">
       {/* Background photo */}
       <Image
-        src="/images/hero.png"
-        alt="Drone cleaning the upper facade of a multi-story commercial building"
+        src="/images/hero.jpg"
+        alt="Technician pressure washing a commercial building with a cleaning drone overhead"
         fill
         priority
         sizes="100vw"
@@ -54,19 +58,26 @@ export function Hero() {
         className="relative mx-auto w-full max-w-7xl px-4 pb-16 pt-28 sm:px-6 lg:px-8"
       >
         <div className="max-w-2xl">
-          <motion.p
+          {/* Drone-MVP emphasis — drone leads even with the broad headline */}
+          <motion.div
             variants={item}
-            className="font-display text-sm font-semibold uppercase tracking-[0.2em] text-brand-bright"
+            className="flex flex-col gap-2 sm:flex-row sm:items-center"
           >
-            Commercial &amp; Residential · {brand.serving}
-          </motion.p>
+            <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-brand px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
+              <PlaneTakeoff className="h-3.5 w-3.5" aria-hidden="true" />
+              Drone-Powered
+            </span>
+            <span className="text-sm font-medium text-white/85">
+              Clean buildings, roofs &amp; windows from the air — no scaffolding or lifts.
+            </span>
+          </motion.div>
 
           <motion.h1
             variants={item}
-            className="mt-4 font-display font-bold uppercase leading-[1.02] text-white"
+            className="mt-5 font-display font-bold uppercase leading-[1.02] text-white"
             style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)" }}
           >
-            Drone-Powered
+            Professional
             <br />
             Exterior Cleaning
           </motion.h1>
@@ -75,26 +86,14 @@ export function Hero() {
             variants={item}
             className="mt-3 font-display text-xl font-semibold uppercase tracking-wide text-brand-bright sm:text-2xl"
           >
-            For Commercial &amp; Multi-Story Properties
+            For Homes &amp; Businesses
           </motion.p>
 
           <motion.p
             variants={item}
             className="mt-5 max-w-xl text-base leading-relaxed text-white/90"
           >
-            Clean your entire building — facades, roofs, high windows, and solar
-            — up to ~150&nbsp;ft with{" "}
-            <span className="font-semibold text-white">no scaffolding</span>,{" "}
-            <span className="font-semibold text-white">no lift rental</span>, and{" "}
-            <span className="font-semibold text-white">nobody working at height</span>.
-            Plus a traditional ground crew for homes, driveways, and flatwork.
-          </motion.p>
-
-          <motion.p
-            variants={item}
-            className="mt-3 text-sm font-medium text-white/70"
-          >
-            {brand.pilotLine}
+            {SERVICES_LINE}
           </motion.p>
 
           <motion.div
@@ -102,13 +101,13 @@ export function Hero() {
             className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center"
           >
             <Button asChild size="lg">
-              <Link href="/quote-request">Get a Free Quote</Link>
+              <Link href="/quote-request">Get Free Quote</Link>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <Link href="/commercial">
-                Commercial Services
-                <ArrowRight aria-hidden="true" />
-              </Link>
+              <a href={brand.phoneHref}>
+                <Phone aria-hidden="true" />
+                Call Now
+              </a>
             </Button>
           </motion.div>
 
