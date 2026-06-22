@@ -6,6 +6,9 @@ import {
   quickLinks,
   serviceAreas,
   copyrightYear,
+  insured,
+  INSURED_BADGE,
+  CERTIFIED_PILOT_BADGE,
 } from "@/lib/site-config";
 import { Logo } from "@/components/site/logo";
 import { FacebookIcon, GoogleIcon } from "@/components/icons";
@@ -121,12 +124,20 @@ export function Footer() {
             <p className="mt-4 text-xs italic text-white/55">
               {serviceAreas.note}
             </p>
-            {/* HONESTY: verifiable claim only. TODO(owner): add an insurance
-                tag here once commercial liability coverage is in place. */}
-            <p className="mt-5 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium text-white">
-              <ShieldCheck className="h-4 w-4 text-brand-bright" aria-hidden="true" />
-              FAA Part 107 Certified Pilot
-            </p>
+            {/* FAA cert is always true. "Licensed & Insured" is honesty-gated
+                on `insured` (site-config.ts) — hidden until coverage is bound. */}
+            <div className="mt-5 flex flex-wrap gap-2">
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium text-white">
+                <ShieldCheck className="h-4 w-4 text-brand-bright" aria-hidden="true" />
+                {CERTIFIED_PILOT_BADGE}
+              </span>
+              {insured && (
+                <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium text-white">
+                  <ShieldCheck className="h-4 w-4 text-brand-bright" aria-hidden="true" />
+                  {INSURED_BADGE}
+                </span>
+              )}
+            </div>
           </div>
         </div>
 
