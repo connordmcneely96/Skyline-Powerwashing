@@ -7,6 +7,7 @@ import {
   brand,
   commercialValue,
   commercialAudience,
+  commercialSteps,
 } from "@/lib/site-config";
 import { iconMap } from "@/components/icons";
 import { Button } from "@/components/ui/button";
@@ -14,9 +15,9 @@ import { SectionHeading } from "@/components/section-heading";
 import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
-  title: "Commercial Drone Cleaning",
+  title: "Commercial Drone Cleaning in Arkansas & Oklahoma",
   description:
-    "Clean your entire building from the air — facades, roofs, high windows, and solar up to ~150 ft. No scaffolding, no lift rental, nobody working at height. Serving Arkansas & Oklahoma.",
+    "Clean your whole building from the air — facades, roofs, high windows, and solar up to ~150 ft. No scaffolding, no lifts, nobody at height.",
 };
 
 // Pre-set the quote form to the commercial branch.
@@ -108,6 +109,40 @@ export default function CommercialPage() {
               );
             })}
           </ul>
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section className="bg-ink py-20 text-white sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <SectionHeading
+              tone="dark"
+              eyebrow="How It Works"
+              title="Simple, Start to Finish"
+              subtitle="No scaffolding to schedule, no surprises. Here's what working with us looks like."
+            />
+          </Reveal>
+          <ol className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {commercialSteps.map((step, i) => (
+              <Reveal
+                as="li"
+                key={step.title}
+                delay={i * 0.06}
+                className="relative rounded-xl border border-white/10 bg-ink-2 p-6"
+              >
+                <span className="font-display text-3xl font-bold text-brand-bright">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-3 text-lg font-semibold text-white">
+                  {step.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-white/70">
+                  {step.desc}
+                </p>
+              </Reveal>
+            ))}
+          </ol>
         </div>
       </section>
 
