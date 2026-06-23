@@ -4,7 +4,14 @@ import "./globals.css";
 
 import { Header } from "@/components/site/header";
 import { Footer } from "@/components/site/footer";
-import { brand, serviceAreas, allServices } from "@/lib/site-config";
+import {
+  brand,
+  serviceAreas,
+  allServices,
+  insured,
+  INSURED_BADGE,
+  CERTIFIED_PILOT_BADGE,
+} from "@/lib/site-config";
 
 const oswald = Oswald({
   subsets: ["latin"],
@@ -52,7 +59,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/og.png",
+        url: "/images/og.jpg",
         width: 1200,
         height: 630,
         alt: brand.name,
@@ -64,7 +71,7 @@ export const metadata: Metadata = {
     title: `${brand.name} | Drone-Powered Exterior Cleaning`,
     description:
       "Clean entire buildings from the air — no scaffolding or lifts. Commercial & residential across Arkansas & Oklahoma.",
-    images: ["/images/og.png"],
+    images: ["/images/og.jpg"],
   },
   alternates: { canonical: "/" },
 };
@@ -73,7 +80,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   name: brand.name,
-  image: `${siteUrl}/images/og.png`,
+  image: `${siteUrl}/images/og.jpg`,
   url: siteUrl,
   telephone: brand.phoneDisplay,
   email: brand.email,
@@ -99,6 +106,17 @@ const jsonLd = {
       itemOffered: { "@type": "Service", name: s.title, description: s.desc },
     })),
   },
+  // FAA cert is always true; the insurance claim is honesty-gated on `insured`.
+  additionalProperty: [
+    {
+      "@type": "PropertyValue",
+      name: CERTIFIED_PILOT_BADGE,
+      value: true,
+    },
+    ...(insured
+      ? [{ "@type": "PropertyValue", name: INSURED_BADGE, value: true }]
+      : []),
+  ],
 };
 
 export default function RootLayout({

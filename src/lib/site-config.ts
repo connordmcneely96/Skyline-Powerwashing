@@ -62,6 +62,8 @@ export interface DifferenceItem {
   title: string;
   icon: IconKey;
   desc: string;
+  /** Only render when `insured` is true (honesty gate). */
+  insuredOnly?: boolean;
 }
 
 export const brand = {
@@ -281,18 +283,34 @@ export const allServices: Service[] = [...droneServices, ...groundServices];
  * TRUST + PROOF
  * ------------------------------------------------------------------------- */
 
-// HONESTY: every badge below is verifiable on day one. We do NOT claim an owned
-// fleet, years in business, client counts, or "Licensed & Insured" until that is
-// confirmed true.
-// TODO(owner): Once commercial liability coverage is bound, you may add
-// "Fully Insured Operations" here (and to the footer tag + JSON-LD).
+// HONESTY INSURANCE GATE.
+// TODO(owner): set to true ONLY once commercial liability coverage is actually bound.
+// Connor confirmed coverage is being obtained. When false, "Licensed & Insured"
+// is hidden everywhere; when true, it shows in the trust bar, difference section,
+// footer tag, and JSON-LD. Do not display this claim before the policy is active.
+export const insured = false;
+
+export const INSURED_BADGE = "Licensed & Insured";
+/** Verifiable, always-true signal used in place of the insurance claim. */
+export const CERTIFIED_PILOT_BADGE = "FAA Part 107 Certified Pilot";
+
+// Trust bar items mirror the reference mockup. "Licensed & Insured" is gated:
+// when `insured` is false it's swapped for the certified-pilot signal so the bar
+// stays balanced at five items. Resolve via `resolveTrustBadges()`.
 export const trustBadges: string[] = [
-  "Drone-Powered Cleaning",
-  "FAA Part 107 Certified Pilot",
-  "No Scaffolding or Lifts",
-  "Commercial & Residential",
+  INSURED_BADGE,
   "Free Estimates",
+  "Commercial & Residential",
+  "Professional Equipment",
+  "Satisfaction Guaranteed",
 ];
+
+/** Returns the trust badges with the insurance claim honesty-gated. */
+export function resolveTrustBadges(): string[] {
+  return trustBadges.map((b) =>
+    b === INSURED_BADGE && !insured ? CERTIFIED_PILOT_BADGE : b
+  );
+}
 
 // Why drone-powered commercial cleaning wins — the grand-slam value prop.
 export const commercialValue: DifferenceItem[] = [
@@ -366,23 +384,23 @@ export const commercialSteps: ProcessStep[] = [
 export const beforeAfter: BeforeAfter[] = [
   {
     label: "House Wash",
-    before: "/images/ba/house-before.png",
-    after: "/images/ba/house-after.png",
+    before: "/images/ba/house-before.jpg",
+    after: "/images/ba/house-after.jpg",
   },
   {
     label: "Driveway Cleaning",
-    before: "/images/ba/driveway-before.png",
-    after: "/images/ba/driveway-after.png",
+    before: "/images/ba/driveway-before.jpg",
+    after: "/images/ba/driveway-after.jpg",
   },
   {
     label: "Roof Cleaning",
-    before: "/images/ba/roof-before.png",
-    after: "/images/ba/roof-after.png",
+    before: "/images/ba/roof-before.jpg",
+    after: "/images/ba/roof-after.jpg",
   },
   {
     label: "Commercial Cleaning",
-    before: "/images/ba/commercial-before.png",
-    after: "/images/ba/commercial-after.png",
+    before: "/images/ba/commercial-before.jpg",
+    after: "/images/ba/commercial-after.jpg",
   },
 ];
 
@@ -414,11 +432,23 @@ export const difference: DifferenceItem[] = [
     desc: "Aerial work is flown by an FAA Part 107 certified remote pilot, by the book.",
   },
   {
+    // Honesty-gated: only rendered when `insured` is true.
+    title: "Licensed & Insured",
+    icon: "safety",
+    desc: "Fully insured commercial operations for your peace of mind and protection.",
+    insuredOnly: true,
+  },
+  {
     title: "Local & Owner-Operated",
     icon: "star",
     desc: "Proudly serving our community with honesty, integrity, and reliable service.",
   },
 ];
+
+/** Difference items with the insurance claim honesty-gated out when not insured. */
+export function resolveDifference(): DifferenceItem[] {
+  return difference.filter((d) => !d.insuredOnly || insured);
+}
 
 export const serviceAreas = {
   AR: ["Little Rock", "North Little Rock", "Benton", "Conway", "Bryant"],

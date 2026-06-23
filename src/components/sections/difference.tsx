@@ -1,11 +1,12 @@
 import Image from "next/image";
 
-import { difference } from "@/lib/site-config";
+import { resolveDifference } from "@/lib/site-config";
 import { iconMap } from "@/components/icons";
 import { SectionHeading } from "@/components/section-heading";
 import { Reveal } from "@/components/reveal";
 
 export function Difference() {
+  const difference = resolveDifference();
   return (
     <section className="bg-surface py-20 sm:py-24 lg:py-28">
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
@@ -46,7 +47,7 @@ export function Difference() {
         <Reveal y={0} className="order-first lg:order-last">
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-line shadow-card">
             <Image
-              src="/images/skyline.png"
+              src="/images/skyline.jpg"
               alt="Drone flying over a city skyline at dusk"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
