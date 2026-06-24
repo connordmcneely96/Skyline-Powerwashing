@@ -17,7 +17,7 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
       >
         <div className="relative aspect-[4/3] w-full overflow-hidden">
           <Image
-            src={`/images/services/${service.slug}.jpg`}
+            src={`/images/${service.slug}.jpg`}
             alt={`${service.title} service`}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"

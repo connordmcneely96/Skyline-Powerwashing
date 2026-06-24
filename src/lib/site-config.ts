@@ -384,23 +384,23 @@ export const commercialSteps: ProcessStep[] = [
 export const beforeAfter: BeforeAfter[] = [
   {
     label: "House Wash",
-    before: "/images/ba/house-before.jpg",
-    after: "/images/ba/house-after.jpg",
+    before: "/images/house-before.jpg",
+    after: "/images/house-after.jpg",
   },
   {
     label: "Driveway Cleaning",
-    before: "/images/ba/driveway-before.jpg",
-    after: "/images/ba/driveway-after.jpg",
+    before: "/images/driveway-before.jpg",
+    after: "/images/driveway-after.jpg",
   },
   {
     label: "Roof Cleaning",
-    before: "/images/ba/roof-before.jpg",
-    after: "/images/ba/roof-after.jpg",
+    before: "/images/roof-before.jpg",
+    after: "/images/roof-after.jpg",
   },
   {
     label: "Commercial Cleaning",
-    before: "/images/ba/commercial-before.jpg",
-    after: "/images/ba/commercial-after.jpg",
+    before: "/images/commercial-before.jpg",
+    after: "/images/commercial-after.jpg",
   },
 ];
 
