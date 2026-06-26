@@ -6,22 +6,21 @@ pages_build_output_dir = ".vercel/output/static"
 
 # D1 — leads database for the /api/quote handler.
 #
-# 1) Create it once:           wrangler d1 create skyline-leads
-#    Copy the printed database_id into `database_id` below.
-# 2) Apply the migration:      wrangler d1 execute skyline-leads --remote --file=./migrations/0001_leads.sql
-# 3) PRODUCTION: add the SAME binding in the Pages dashboard
-#    (Settings → Functions → D1 database bindings): Variable name "DB" → skyline-leads.
-#    The binding in this file applies to `wrangler` CLI / local dev; the
-#    dashboard binding is what production Pages Functions actually use.
+# IMPORTANT: bindings attach only to deployments created AFTER the binding
+# exists. Any change here (or to the matching binding in the Pages dashboard)
+# requires a brand-new deployment to take effect on the live site. A redeploy
+# of a build that predates the binding will NOT have `env.DB`.
+#
+# Setup history:
+#   wrangler d1 create skyline-leads
+#   wrangler d1 execute skyline-leads --remote --file=./migrations/0001_leads.sql
 [[d1_databases]]
 binding = "DB"
 database_name = "skyline-leads"
 database_id = "422fc8fe-e8aa-40b3-8ce9-7cb8d43dcfcf"
 
 # Optional KV namespace for IP rate limiting (the API skips limiting if absent).
-# Create:  wrangler kv namespace create RATE_LIMIT
-# Then uncomment and paste the id, and add the same "RATE_LIMIT" binding in the
-# Pages dashboard (Settings → Functions → KV namespace bindings).
+# To enable: create the namespace, uncomment, paste the id, then redeploy.
 # [[kv_namespaces]]
 # binding = "RATE_LIMIT"
 # id = "REPLACE_WITH_KV_NAMESPACE_ID"
