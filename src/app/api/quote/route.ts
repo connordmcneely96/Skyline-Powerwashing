@@ -211,9 +211,13 @@ async function sendNotifications(env: CloudflareEnv, lead: QuoteLead) {
   if (!RESEND_API_KEY || !RESEND_FROM) return;
 
   const isCommercial = lead.type === "commercial";
-  const ownerTo = isCommercial
-    ? env.COMMERCIAL_INBOX
-    : env.RESIDENTIAL_INBOX;
+  // Route to the matching inbox, but fall back to whichever owner inbox IS set
+  // (both currently point to the same address) so a missing RESIDENTIAL_INBOX or
+  // COMMERCIAL_INBOX never silently drops the owner notification.
+  const ownerTo =
+    (isCommercial ? env.COMMERCIAL_INBOX : env.RESIDENTIAL_INBOX) ||
+    env.RESIDENTIAL_INBOX ||
+    env.COMMERCIAL_INBOX;
   const subjectPrefix = isCommercial ? "[COMMERCIAL]" : "[Residential]";
 
   const tasks: Promise<unknown>[] = [];
