@@ -119,10 +119,14 @@ export async function POST(req: Request): Promise<Response> {
   }
   const data = parsed.data;
 
-  // Honeypot: pretend success so bots don't learn they were caught.
-  if (data.companyWebsite.trim() !== "") {
-    return json({ success: true });
-  }
+  // Honeypot DISABLED (2026-06). The hidden field is labeled "Company Website",
+  // which browsers and password managers autofill — that was silently dropping
+  // real submissions (200 OK, no insert, no email). Re-enable ONLY with a
+  // neutral, non-autofilled field name or a real CAPTCHA. The value is still
+  // captured by the schema above for later auditing, just no longer acted on.
+  // if (data.companyWebsite.trim() !== "") {
+  //   return json({ success: true });
+  // }
 
   const ip = clientIp(req);
   if (await isRateLimited(env, ip)) {
